@@ -34,7 +34,8 @@ const ServicesModal = ({ isOpen, onClose }) => {
     const deleteService = async (service) => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/service?business_id=${business_id}&service_id=${service._id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                credentials: 'include',
             })
 
             if (response.ok) {
@@ -53,6 +54,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
                 headers: {
                     'Content-type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     turn: currentTurn,
                     technician: currentTechnician
@@ -76,6 +78,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
                 headers: {
                     'Content-type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     turn: currentTurn,
                     technician: currentTechnician,
@@ -97,7 +100,8 @@ const ServicesModal = ({ isOpen, onClose }) => {
         if (currentTurn._id) {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/api/service_record/delete?business_id=${business_id}&turn_id=${currentTurn._id}`, {
-                    method: "DELETE"
+                    method: "DELETE",
+                    credentials: 'include',
                 })
 
                 if (response.ok) {
@@ -132,6 +136,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify(newServiceFormData)
             })
 

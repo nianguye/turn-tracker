@@ -26,6 +26,7 @@ const Setting = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify({
                     name: businessName
                 })
@@ -51,6 +52,7 @@ const Setting = () => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/api/edit`, {
                     method: "DELETE",
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                     },

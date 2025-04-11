@@ -9,7 +9,8 @@ const useFetchUser = () => {
             setUserLoading(true);
 
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user`, {
-                method: "GET"
+                method: "GET",
+                credentials: 'include',
             });
 
             if (!response.ok) {

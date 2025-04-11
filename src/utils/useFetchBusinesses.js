@@ -8,6 +8,7 @@ const useFetchBusinesses = () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/business/single/${business_id}`, {
                 method: "GET",
+                credentials: 'include',
             });
 
             if (!response.ok) {
@@ -26,6 +27,7 @@ const useFetchBusinesses = () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/business`, {
                 method: "GET",
+                credentials: 'include',
             });
 
             if (!response.ok) {

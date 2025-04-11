@@ -57,8 +57,6 @@ app.set('views', __dirname);
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
-app.options('*', cors());
-
 app.use('/api/tech', techRoute);
 app.use('/api/service', servicesRoute);
 app.use('/auth/google', loginRoute);

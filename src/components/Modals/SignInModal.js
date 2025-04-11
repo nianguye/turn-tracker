@@ -39,6 +39,7 @@ const SignInModal = ({ isOpen, onClose }) => {
                 try {
                     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tech?business_id=${business_id}&technician_id=${technician._id}`, {
                         method: "DELETE",
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -55,9 +56,11 @@ const SignInModal = ({ isOpen, onClose }) => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/api/sign_in`, {
                     method: "POST",
+        
                     headers: {
                         'Content-Type': 'application/json'
                     },
+                    credentials: 'include',
                     body: JSON.stringify({
                         technician_id: technician._id
                     })
@@ -90,6 +93,7 @@ const SignInModal = ({ isOpen, onClose }) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify(newTechnicianFormData)
             })
 

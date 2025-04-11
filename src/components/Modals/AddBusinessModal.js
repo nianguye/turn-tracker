@@ -32,6 +32,7 @@ const AddBusinessModal = ({ isOpen, onClose }) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify(formData)
             })
 
