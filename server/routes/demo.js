@@ -25,6 +25,8 @@ router.get('/', async(req,res) => {
         req.session.user_id = user._id;
         req.session.googleId = 1;
         // Redirect to the client application
+        console.log("test")
+        console.log(req.session);
         res.status(201).json({message: "Returned"});
     } catch (error) {
         console.error(error);
