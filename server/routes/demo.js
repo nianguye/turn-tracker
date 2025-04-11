@@ -24,9 +24,14 @@ router.get('/', async(req,res) => {
         }
         req.session.user_id = user._id;
         req.session.googleId = 1;
-        req.session.save()
+        req.session.save(err => {
+            if (err) {
+              console.error('Error saving session:', err);
+              return res.status(500).json({ error: 'Could not save session' });
+            }
+            res.status(201).json({ message: 'Session saved and user logged in' });
+          });
         // Redirect to the client application
-        console.log("test")
         console.log(req.session);
         res.status(201).json({message: "Returned"});
     } catch (error) {

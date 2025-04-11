@@ -36,6 +36,7 @@ router.post('/', async (req, res) => {
     try {
         if (!req.session.user_id) {
             res.status(500).json();
+            return;
         }
         const newBusiness = new Business(
             {
