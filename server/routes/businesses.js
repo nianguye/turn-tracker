@@ -72,7 +72,7 @@ router.get('/set-session', (req, res) => {
       console.log('Setting session ID:', req.sessionID);
       // Save the session
       req.session.save();
-        res.status(200).json({ message: 'Session set successfully' });
+      res.status(200).json({ message: 'Session set successfully' });
     } catch (error) {
       console.error('Error setting session:', error);
       res.status(500).send('Internal Server Error');

@@ -31,20 +31,13 @@ app.use(
     saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
-      path: '/', 
+
     },
   })
 );
-
-app.use((req, res, next) => {
-  console.log('Session ID:', req.sessionID);
-  console.log('Session Data:', req.session);
-  next();
-});
-
+app.set('trust proxy', 1);
 
 const socketOrigin = process.env.NODE_ENV === 'production'
   ? process.env.APP_URL
