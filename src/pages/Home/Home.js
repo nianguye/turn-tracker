@@ -68,7 +68,7 @@ const Home = () => {
 
     const getSignIns = async () => {
         try {
-            const response = await fetch(`/api/sign_in?business_id=${business_id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/sign_in?business_id=${business_id}`, {
                 method: "GET"
             })
 
@@ -138,7 +138,7 @@ const Home = () => {
         const confirm = window.confirm("Are you sure you want to clear the turn tracker?");
         if (confirm) {
             try {
-                const response = await fetch(`/api/sign_in/clear?business_id=${business_id}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/sign_in/clear?business_id=${business_id}`, {
                     method: "POST"
                 })
                 const responseData = await response.json();

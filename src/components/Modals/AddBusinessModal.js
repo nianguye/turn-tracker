@@ -25,7 +25,7 @@ const AddBusinessModal = ({ isOpen, onClose }) => {
 
     const addBusiness = async () => {
         try {
-            const response = await fetch('/api/business', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/business`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

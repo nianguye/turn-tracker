@@ -9,7 +9,7 @@ const useFetchService = () => {
 
     const refreshService = async () => {
         try {
-            const response = await fetch(`/api/service?business_id=${business_id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/service?business_id=${business_id}`, {
                 method: "GET"
             });
 

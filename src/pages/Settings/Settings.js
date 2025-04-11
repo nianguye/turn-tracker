@@ -21,7 +21,7 @@ const Setting = () => {
 
     const editBusiness = async (event) => {
         try {
-            const response = await fetch(`/api/edit`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/edit`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const Setting = () => {
 
         if (confirm) {
             try {
-                const response = await fetch(`/api/edit`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/edit`, {
                     method: "DELETE",
                     headers: {
                         'Content-Type': 'application/json'

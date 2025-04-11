@@ -15,7 +15,7 @@ const Businesses = () => {
 
     const clickBusiness = async (business) => {
         try {
-            const response = await fetch(`/api/business/currentBusiness`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/business/currentBusiness`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

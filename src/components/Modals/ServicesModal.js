@@ -33,7 +33,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
 
     const deleteService = async (service) => {
         try {
-            const response = await fetch(`/api/service?business_id=${business_id}&service_id=${service._id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/service?business_id=${business_id}&service_id=${service._id}`, {
                 method: "DELETE"
             })
 
@@ -48,7 +48,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
 
     const skipTurn = async () => {
         try {
-            const response = await fetch('/api/service_record/skip', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/service_record/skip`, {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/json'
@@ -71,7 +71,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
 
     const addTurn = async (service) => {
         try {
-            const response = await fetch((currentTurn._id ? '/api/service_record/edit' : '/api/service_record'), {
+            const response = await fetch((currentTurn._id ? `${process.env.REACT_APP_API_URL}/api/service_record/edit` : `${process.env.REACT_APP_API_URL}/api/service_record`), {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/json'
@@ -96,7 +96,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
     const deleteTurn = async () => {
         if (currentTurn._id) {
             try {
-                const response = await fetch(`/api/service_record/delete?business_id=${business_id}&turn_id=${currentTurn._id}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/service_record/delete?business_id=${business_id}&turn_id=${currentTurn._id}`, {
                     method: "DELETE"
                 })
 
@@ -127,7 +127,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
 
     const addService = async (event) => {
         try {
-            const response = await fetch(`/api/service?business_id=${business_id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/service?business_id=${business_id}`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
