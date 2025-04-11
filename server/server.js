@@ -48,7 +48,11 @@ app.use(
         secret: process.env.SESSION_SECRET,     // Secret key to sign the session ID cookie
         resave: false,                      // Don't save session if unmodified
         saveUninitialized: false,           // Don't create session until something stored
-        cookie: { secure: process.env.NODE_ENV === 'production',sameSite: 'none' },          // True if using https. Set to false for development without https
+        cookie: {
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', 
+            httpOnly: true
+          }        
     })
 );
 
