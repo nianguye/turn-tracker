@@ -18,7 +18,7 @@ const server = http.createServer(app);
 // cors
 app.use(cors({
     origin: `${process.env.APP_URL}`,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true 
 }));
@@ -56,6 +56,8 @@ app.use(
 app.set('views', __dirname);
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
+
+app.options('*', cors());
 
 app.use('/api/tech', techRoute);
 app.use('/api/service', servicesRoute);
