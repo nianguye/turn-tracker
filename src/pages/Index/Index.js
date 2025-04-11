@@ -7,6 +7,11 @@ const Index = () => {
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
 
+    // Redirect to the dashboard if the user is already logged in
+    if (user) {
+        navigate('/businesses');
+    }
+
     return (
         <>
             <header className="index-page__header">

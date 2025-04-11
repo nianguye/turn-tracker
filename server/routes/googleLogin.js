@@ -129,7 +129,7 @@ router.get('/logoutCallback', async(req, res) => {
             console.error('Error during logout:', err);
             return res.status(500).json({ error: 'Logout failed' });
         }
-        res.redirect(`${process.env.APP_URL}:${process.env.CLIENT_PORT}`);
+        res.redirect(`${process.env.APP_URL}`);
     });
 
     //res.status(200).json({});
