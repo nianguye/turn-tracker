@@ -83,10 +83,10 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/' }
 
         req.session.user_id = user._id;
         // Redirect to the client application
-        res.redirect(`${process.env.APP_URL}:${process.env.CLIENT_PORT}/login`);
+        res.redirect(`${process.env.APP_URL}/login`);
     } catch (error) {
         console.error('Error during authentication callback:', error);
-        res.redirect(`${process.env.APP_URL}:${process.env.CLIENT_PORT}`);
+        res.redirect(`${process.env.APP_URL}`);
     }
 }
 );
