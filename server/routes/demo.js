@@ -24,6 +24,7 @@ router.get('/', async(req,res) => {
         }
         req.session.user_id = user._id;
         req.session.googleId = 1;
+        req.session.save()
         // Redirect to the client application
         console.log("test")
         console.log(req.session);
