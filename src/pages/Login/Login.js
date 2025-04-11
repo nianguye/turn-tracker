@@ -30,7 +30,7 @@ const Login = () => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/api/demo`, {
                     method: "GET",
-                    credentials: "same-origin", // Ensure cookies (session) are sent with the request
+                    credentials: "include", // Ensure cookies (session) are sent with the request
                 })
 
                 const responseData = await response;
