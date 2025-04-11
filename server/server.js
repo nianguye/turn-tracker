@@ -5,8 +5,6 @@ const session = require('express-session');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
-const RedisStore = require('connect-redis')(session);
-const { createClient } = require('redis');
 
 const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development';
 dotenv.config({ path: envFile });
@@ -14,14 +12,6 @@ dotenv.config({ path: envFile });
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
 const server = http.createServer(app);
-
-const redisClient = createClient({
-  url: process.env.REDIS_URL,
-  legacyMode: true,
-});
-redisClient.on('error', (err) => console.error('Redis Client Error:', err));
-redisClient.on('connect', () => console.log('Redis client connected'));
-redisClient.connect().catch((err) => console.error('Redis connection failed:', err));
 
 app.use(
   cors({
@@ -36,10 +26,6 @@ app.use(express.json());
 
 app.use(
   session({
-    store: new RedisStore({
-      client: redisClient,
-      prefix: 'sess:', 
-    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -50,7 +36,6 @@ app.use(
       maxAge: 24 * 60 * 60 * 1000,
       path: '/', 
     },
-    name: 'connect.sid', 
   })
 );
 
@@ -60,13 +45,6 @@ app.use((req, res, next) => {
   next();
 });
 
-const apiRouter = express.Router();
-apiRouter.use((req, res, next) => {
-  res.set({
-    'Cache-Control': 'no-store',
-  });
-  next();
-});
 
 const socketOrigin = process.env.NODE_ENV === 'production'
   ? process.env.APP_URL
@@ -109,27 +87,15 @@ const userRoute = require('./routes/user');
 const editRoute = require('./routes/editBusiness');
 const demoRoute = require('./routes/demo');
 
-app.use('/api', apiRouter);
-apiRouter.use('/tech', techRoute);
-apiRouter.use('/service', servicesRoute);
-apiRouter.use('/auth/google', loginRoute);
-apiRouter.use('/business', businessesRoute);
-apiRouter.use('/sign_in', signInRoute);
-apiRouter.use('/service_record', serviceRecordRoute);
-apiRouter.use('/user', userRoute);
-apiRouter.use('/edit', editRoute);
-apiRouter.use('/demo', demoRoute);
-
-apiRouter.get('/test-redis', async (req, res) => {
-  try {
-    await redisClient.set('test', 'hello');
-    const value = await redisClient.get('test');
-    res.status(200).json({ message: 'Redis working', value });
-  } catch (error) {
-    console.error('Redis test error:', error);
-    res.status(500).json({ error: 'Redis test failed' });
-  }
-});
+app.use('/api/tech', techRoute);
+app.use('/api/service', servicesRoute);
+app.use('/auth/google', loginRoute);
+app.use('/api/business', businessesRoute);
+app.use('/api/sign_in', signInRoute);
+app.use('/api/service_record', serviceRecordRoute);
+app.use('/api/user', userRoute);
+app.use('/api/edit', editRoute);
+app.use('/api/demo', demoRoute);
 
 app.set('views', __dirname);
 app.set('view engine', 'jsx');
