@@ -23,6 +23,8 @@ const AddBusinessModal = ({ isOpen, onClose }) => {
         )
     }
 
+    console.log(`${process.env.REACT_APP_API_URL}`)
+
     const addBusiness = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/business`, {
