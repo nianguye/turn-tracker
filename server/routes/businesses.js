@@ -69,7 +69,7 @@ router.get('/set-session', (req, res) => {
       // Manually set some session data
       req.session.user_id = '668f6f192cad53b36ea52cf9';  // Example user ID
       req.session.loggedIn = true;  // Mark user as logged in
-      
+      console.log('Setting session ID:', req.sessionID);
       // Save the session
       req.session.save();
         res.status(200).json({ message: 'Session set successfully' });
