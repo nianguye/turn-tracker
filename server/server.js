@@ -17,7 +17,7 @@ const server = http.createServer(app);
 
 // cors
 app.use(cors({
-    origin: `${process.env.APP_URL}:${process.env.SERVER_PORT}`,
+    origin: `${process.env.APP_URL}`,
     credentials: true,
 }));
 
