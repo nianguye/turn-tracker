@@ -62,4 +62,39 @@ router.post('/currentBusiness', async (req, res) => {
         console.error(error);
     }
 })
+
+// Example of a GET route to set session data
+router.get('/set-session', (req, res) => {
+    try {
+      // Manually set some session data
+      req.session.user_id = '668f6f192cad53b36ea52cf9';  // Example user ID
+      req.session.loggedIn = true;  // Mark user as logged in
+      
+      // Save the session
+      req.session.save();
+        res.status(200).json({ message: 'Session set successfully' });
+    } catch (error) {
+      console.error('Error setting session:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
+  // Example of a GET route to retrieve session data
+  router.get('/get-session', (req, res) => {
+    try {
+      // Check if session is available
+      if (req.session && req.session.user_id) {
+        res.json({ 
+          user_id: req.session.user_id,
+          loggedIn: req.session.loggedIn,
+        });
+      } else {
+        res.status(400).send('No session found');
+      }
+    } catch (error) {
+      console.error('Error retrieving session:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
 module.exports = router;

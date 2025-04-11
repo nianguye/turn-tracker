@@ -69,7 +69,7 @@ app.use(
         saveUninitialized: false,           // Don't create session until something stored
         cookie: {
             secure: process.env.NODE_ENV === 'production', 
-            sameSite: 'None',
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
             httpOnly: true
           }        
     })
@@ -79,16 +79,6 @@ app.use(
 app.set('views', __dirname);
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
-
-app.use('/api/tech', techRoute);
-app.use('/api/service', servicesRoute);
-app.use('/auth/google', loginRoute);
-app.use('/api/business', businessesRoute);
-app.use('/api/sign_in', signInRoute);
-app.use('/api/service_record', serviceRecordRoute);
-app.use('/api/user', userRoute);
-app.use('/api/edit', editRoute);
-app.use('/api/demo', demoRoute);
 
 const socketOrigin = process.env.NODE_ENV === "production"
     ? `${process.env.APP_URL}`
@@ -126,6 +116,16 @@ async function connectDB() {
         process.exit(1); // Exit the process if unable to connect to the database
     }
 }
+
+app.use('/api/tech', techRoute);
+app.use('/api/service', servicesRoute);
+app.use('/auth/google', loginRoute);
+app.use('/api/business', businessesRoute);
+app.use('/api/sign_in', signInRoute);
+app.use('/api/service_record', serviceRecordRoute);
+app.use('/api/user', userRoute);
+app.use('/api/edit', editRoute);
+app.use('/api/demo', demoRoute);
 
 server.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
