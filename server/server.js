@@ -15,6 +15,16 @@ const port = process.env.SERVER_PORT;
 
 const server = http.createServer(app);
 
+
+const RedisStore = require('connect-redis').default;
+const { createClient } = require('redis');
+
+const redisClient = createClient({
+  url: process.env.REDIS_URL,
+  legacyMode: true, // Required for connect-redis to work smoothly
+});
+redisClient.connect().catch(console.error);
+
 // cors
 app.use(cors({
     origin: `${process.env.APP_URL}`,
@@ -45,6 +55,7 @@ app.use(express.json());
 // session variable
 app.use(
     session({
+        store: new RedisStore({ client: redisClient }),
         secret: process.env.SESSION_SECRET,     // Secret key to sign the session ID cookie
         resave: false,                      // Don't save session if unmodified
         saveUninitialized: false,           // Don't create session until something stored
