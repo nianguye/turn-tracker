@@ -28,7 +28,7 @@ const Login = () => {
 
     const demoLogin = async() => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/demo`, {
+                const response = await fetch(`/api/demo`, {
                     method: "GET",
                     credentials: "include", // Ensure cookies (session) are sent with the request
                 })
