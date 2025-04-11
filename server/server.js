@@ -70,7 +70,8 @@ app.use(
         cookie: {
             secure: process.env.NODE_ENV === 'production', 
             sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
-            httpOnly: true
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000
           }        
     })
 );
