@@ -32,9 +32,11 @@ router.get('/currentBusiness', async (req, res) => {
         console.error(error);
     }
 });
-router.post('/', validateLogin, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        console.log("here1")
+        if (!req.session.user_id) {
+            res.status(500).json();
+        }
         const newBusiness = new Business(
             {
                 name: req.body.name,
