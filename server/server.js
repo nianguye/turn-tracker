@@ -50,7 +50,7 @@ app.use(
         saveUninitialized: false,           // Don't create session until something stored
         cookie: {
             secure: process.env.NODE_ENV === 'production', 
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', 
+            sameSite: 'None',
             httpOnly: true
           }        
     })
