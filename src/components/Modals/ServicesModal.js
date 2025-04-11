@@ -73,7 +73,7 @@ const ServicesModal = ({ isOpen, onClose }) => {
 
     const addTurn = async (service) => {
         try {
-            const response = await fetch((currentTurn._id ? `${process.env.REACT_APP_API_URL}/api/service_record/edit` : `${process.env.REACT_APP_API_URL}/api/service_record`), {
+            const response = await fetch((currentTurn._id ? `/api/service_record/edit` : `/api/service_record`), {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/json'
