@@ -96,7 +96,6 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/logoutCallback', async(req, res) => {
-    console.log(req.session.googleId)
     if (req.session.googleId === 1) {
         try {
             const sessionId = await User.find({googleId: 1})

@@ -32,7 +32,6 @@ router.get('/', async(req,res) => {
             res.status(201).json({ message: 'Session saved and user logged in' });
           });
         // Redirect to the client application
-        console.log(req.session);
         res.status(201).json({message: "Returned"});
     } catch (error) {
         console.error(error);

@@ -34,6 +34,7 @@ router.get('/currentBusiness', async (req, res) => {
 });
 router.post('/', async (req, res) => {
     try {
+        console.log(req.session)
         if (!req.session.user_id) {
             res.status(500).json();
             return;
