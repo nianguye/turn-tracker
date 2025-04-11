@@ -34,6 +34,7 @@ router.get('/currentBusiness', async (req, res) => {
 });
 router.post('/', validateLogin, async (req, res) => {
     try {
+        console.log("here1")
         const newBusiness = new Business(
             {
                 name: req.body.name,
