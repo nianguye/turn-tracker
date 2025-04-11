@@ -19,6 +19,8 @@ const server = http.createServer(app);
 app.use(cors({
     origin: `${process.env.APP_URL}`,
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Routes
