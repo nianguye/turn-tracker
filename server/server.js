@@ -16,7 +16,7 @@ const port = process.env.SERVER_PORT;
 const server = http.createServer(app);
 
 
-const RedisStore = require('connect-redis').default;
+const RedisStore = require('connect-redis')(session);
 const { createClient } = require('redis');
 
 const redisClient = createClient({
