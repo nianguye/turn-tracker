@@ -37,7 +37,7 @@ const SignInModal = ({ isOpen, onClose }) => {
 
             if (confirm) {
                 try {
-                    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tech?business_id=${business_id}&technician_id=${technician._id}`, {
+                    const response = await fetch(`/api/tech?business_id=${business_id}&technician_id=${technician._id}`, {
                         method: "DELETE",
                         credentials: 'include',
                         headers: {
@@ -54,7 +54,7 @@ const SignInModal = ({ isOpen, onClose }) => {
             }
         } else {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/sign_in`, {
+                const response = await fetch(`/api/sign_in`, {
                     method: "POST",
         
                     headers: {
@@ -88,7 +88,7 @@ const SignInModal = ({ isOpen, onClose }) => {
     const addTech = async (event) => {
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tech?business_id=${business_id}`, {
+            const response = await fetch(`/api/tech?business_id=${business_id}`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

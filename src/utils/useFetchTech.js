@@ -9,7 +9,7 @@ const useFetchTech = () => {
 
     const refreshTechnician = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tech?business_id=${business_id}`, {
+            const response = await fetch(`/api/tech?business_id=${business_id}`, {
                 method: "GET",
                 credentials: 'include',
             });

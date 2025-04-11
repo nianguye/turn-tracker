@@ -6,7 +6,7 @@ const useFetchBusinesses = () => {
 
     const getBusinessById = async (business_id) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/business/single/${business_id}`, {
+            const response = await fetch(`/api/business/single/${business_id}`, {
                 method: "GET",
                 credentials: 'include',
             });
@@ -25,7 +25,7 @@ const useFetchBusinesses = () => {
 
     const refreshBusinesses = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/business`, {
+            const response = await fetch(`/api/business`, {
                 method: "GET",
                 credentials: 'include',
             });

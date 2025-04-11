@@ -20,7 +20,7 @@ const Header = () => {
 
     const logout = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/google/logoutCallback`, {
+            const response = await fetch(`/auth/google/logoutCallback`, {
                 method: "GET",
                 credentials: "include", // Ensure cookies (session) are sent with the request
             });
